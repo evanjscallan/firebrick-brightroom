@@ -3,9 +3,10 @@ import ReactDOM from "react-dom";
 import './../styles/styles.css'
 import Download from './Download.js'
 import placeHolder from './../img/test.jpg'
+import SMPTE from './../img/SMPTE_color_bars.jpg'
 
 
-const Image = (props) => {
+const Image = (props, {children}) => {
 	let [ userImage, setUserImage ] = React.useState(placeHolder)
 
 	async function onImageChange(event){
@@ -17,6 +18,11 @@ const Image = (props) => {
 		if (event.target.value === ""){
 			setUserImage(placeHolder)
 		}
+	}
+
+	function handleClickCalibrate(event){
+		event.preventDefault()
+		setUserImage(SMPTE)
 	}
 
 	return(
@@ -35,28 +41,31 @@ const Image = (props) => {
 					 ${props.contrast}(${props.contrastVal}%)
 					 ${props.brightness}(${props.brightnessVal}%)
 					 ${props.hue}(${props.hueVal}deg)`,}}/>
+	
 		</div>
 
+		<div>
+		<form>
+		<div >
+		<label className='enterURL'htmlFor='file'>ENTER IMG URL:</label>
 
-		<div>
-		<form className='flex-col-ctr'>
-		<div>
-		<label className='enterURL' htmlFor='file'>Enter Image URL:</label>
 				<input
 					type="text"
 					id="file"
-
 					name="file"
 					onChange={(event) => onImageChange(event)}
 				/>
+
+				<div>
+					
+					<Download imageDL={userImage}/>
+					<button onClick={event => handleClickCalibrate(event)}>CALIBRATE</button>
+				</div>
 				
 		</div>
-			<div className="button-box importer flex-row">
-		
-			
-				<Download imageDL={userImage}/>
-			</div>
 		</form>
+		
+		
 		</div>
 
 		

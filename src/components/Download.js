@@ -15,9 +15,11 @@ const Download = (props) => {
 		}
 	}
 
+
+
 	return (
 		<>	
-			<button id='file' onClick={(e) => screenShotImage(e)}>EXPORT...</button>
+			<button className='exportButton' onClick={(e) => screenShotImage(e)}>EXPORT...</button>
 		</>
 	)};
 export default Download;

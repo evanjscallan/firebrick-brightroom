@@ -11,9 +11,9 @@ const Layout = () => {
 	
 	return(
 		<>
-		<div className='layout flex-col-ctr'>
+		<div>
 	
-			<div className='titleText flex-row'>
+			<div className='titleText flex-row-ctr'>
 				<img
 					className="icon-main"
 					src={fireBrickIcon}

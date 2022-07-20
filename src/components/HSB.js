@@ -18,21 +18,44 @@ const HSB = () => {
 		setSatVal(e.target.value);
 	};
 
+	const satReset = (e) => {
+		if (e.detail === 2 && satVal !== 100){
+			setSatVal(100)
+		}
+	}
+
 	const onContrastChange = (e) => {
 		document.querySelector("#imageFormat");
 		setContrastVal(e.target.value);
 	};
+
+	const contrastReset = (e) => {
+		if (e.detail === 2 && contrastVal !== 100){
+			setContrastVal(100)
+		}
+	}
 
 	const onBrightnessChange = (e) => {
 		document.querySelector("#imageFormat");
 		setBrightnessVal(e.target.value);
 	};
 
+	const brightnessReset = (e) => {
+		if (e.detail === 2 && brightnessVal !== 100){
+			setBrightnessVal(100)
+		}
+	}
+
 	const onHueChange = (e) => {
 		document.querySelector("#imageFormat");
 		setHueVal(e.target.value);
 	};
 
+	const hueReset = (e) => {
+		if (e.detail === 2 && hueVal !== 0){
+			setHueVal(0)
+		}
+	}
 
 	const onRed1Change = (e: number) => {
 		document.querySelector("#imageFormat");
@@ -50,8 +73,8 @@ const HSB = () => {
 	};
 
 
-	const resetButton = (event: number) => {
-		document.querySelector("#mainImage");
+	const resetButton = (event) => {
+		document.querySelector("#imageFormat");
 		setSatVal(100);
 		setBrightnessVal(100);
 		setContrastVal(100);
@@ -61,7 +84,7 @@ const HSB = () => {
 
 	return (
 		<>	
-
+		<div className='flex-col-ctr'>
 			<Image
 				sat="saturate"
 				satVal={satVal}
@@ -85,6 +108,7 @@ const HSB = () => {
 					max={200}
 					value={brightnessVal}
 					onChange={(e) => onBrightnessChange(e)}
+					onClick={(e) => brightnessReset(e)}
 				/>
 
 				<label htmlFor="sat" className="sliderlist">
@@ -96,6 +120,7 @@ const HSB = () => {
 					max={200}
 					value={satVal}
 					onChange={(e) => onSatChange(e)}
+					onClick={(e) => satReset(e)}
 				/>
 
 				<label htmlFor="contrast" className="sliderlist">
@@ -107,6 +132,7 @@ const HSB = () => {
 					max={200}
 					value={contrastVal}
 					onChange={(e) => onContrastChange(e)}
+					onClick={(e) => contrastReset(e)}
 				/>
 
 				<label htmlFor="hue" className="sliderlist">
@@ -118,15 +144,22 @@ const HSB = () => {
 					max={360}
 					value={hueVal}
 					onChange={(e) => onHueChange(e)}
+					onClick={(e) => hueReset(e)}
 				/>
 				<img
 					className="hueScale"
 					src={hueScale}
 					alt="hue scale"/>
 
+
+		<button onClick={(event) => resetButton(event)}> RESET </button>
+
+
+		</div>
 		</div>
 			
 		</>
 	);
 };
+
 export default HSB;
